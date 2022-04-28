@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Inventory from './Inventory';
 
 const Home = () => {
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/books')
+            .then(res => res.json())
+            .then(data => setBooks(data))
+    }, [])
+    console.log(books); 
     return (
         <div>
             <div className='container'>
@@ -42,6 +50,12 @@ const Home = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
+            </div>
+
+            <div>
+                {
+                    books.map(book => <Inventory book={book} key={book._id}></Inventory>)
+                }
             </div>
         </div>
     );
