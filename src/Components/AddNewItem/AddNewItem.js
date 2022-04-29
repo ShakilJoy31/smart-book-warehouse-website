@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import './AddNewItem.css'; 
+import './AddNewItem.css'; 
 
 const AddNewItem = () => {
     const [user] = useAuthState(auth); 
@@ -34,7 +35,7 @@ const AddNewItem = () => {
 
     }
     return (
-        <div>
+        <div className='forHeight'>
             <div className='d-flex justify-content-center'>
                 <div className='border border-success rounded mt-4 pb-4 pt-4 w-75 d-block'>
                     <h1 className='text-success ms-2'>Add a New Item to Warehouse</h1>

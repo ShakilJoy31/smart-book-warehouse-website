@@ -60,7 +60,7 @@ const Login = () => {
     console.log(email); 
 
     return (
-        <div className='mt-4 row'>
+        <div className='mt-4 row forheight'>
             <div className='d-block mx-auto col-md-8 col-sm-8 col-lg-6 border border-primary p-3 rounded w-75'>
                 <h1 className='text-primary'>Log in</h1>
                 <form onSubmit={handleOnSubmit}>

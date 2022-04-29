@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import Loadding from '../Loadding';
+import './MyItems.css'; 
 
 const MyItems = () => {
     const [user, loading] = useAuthState(auth);
@@ -43,7 +44,7 @@ const MyItems = () => {
 
     
     return (
-        <div className='mt-5'>
+        <div className='mt-5 forheight'>
             <h1 className='d-flex justify-content-center text-primary'>The books you have added is being showed here</h1>
             {
                 <div className='ms-5 me-5'>

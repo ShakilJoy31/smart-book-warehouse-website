@@ -14,7 +14,7 @@ const Reader = () => {
                     />
                     <Carousel.Caption>
                         <h5 className='text-info'>It's a greate pleasure to be a Dealer.</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <p className='text'>I take the books from their ware house and read from long</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -24,8 +24,8 @@ const Reader = () => {
                         alt="Second slide"
                     />
                     <Carousel.Caption>
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5 className='text-info'>A successful dealer of this Ware house. </h5>
+                        <p className='text'>I love to be with this ware house since 2013. And I supply books their as much as they needed. </p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -35,8 +35,8 @@ const Reader = () => {
                         alt="Third slide"
                     />
                     <Carousel.Caption>
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <h5 className='text-info'>Let's have a great journey as a new dealer with smart book ware house. </h5>
+                        <p className='text'>I wanted to be a book dealer since child hood. I am lucky to be a dealer with this ware house. </p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

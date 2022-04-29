@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Inventory from './Inventory';
 import Location from './Location';
 import Reader from './Reader';
+import './Home.css' 
+
 
 const Home = () => {
     const [books, setBooks] = useState([]);
@@ -21,7 +23,7 @@ const Home = () => {
     }
     return (
         <div>
-            <div className='container'>
+            <div className='container mt-4'>
                 <Carousel fade>
                     <Carousel.Item>
                         <img
@@ -31,7 +33,7 @@ const Home = () => {
                         />
                         <Carousel.Caption>
                             <h3 className='text-warning'>Books buyer doesn't become poor. </h3>
-                            <p className=''>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <p className='text'>I am not educated person but I can tell with confidence about that.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -43,7 +45,7 @@ const Home = () => {
 
                         <Carousel.Caption>
                             <h3 className='text-warning'>Read Books too enrich your knowledge</h3>
-                            <p className=''>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p className='text'>The more we read the more our knowledge will increase. Reading book is a good habit.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -55,7 +57,7 @@ const Home = () => {
 
                         <Carousel.Caption>
                             <h3 className='text-warning'>The person who reads book has few foe</h3>
-                            <p className=''>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <p className='text'>There is a few foe who loves to read book. The habit of reading book reduce our mantel pressure.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

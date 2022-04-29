@@ -51,7 +51,7 @@ const ManageInventory = () => {
                         books.map(book =>
                             <tbody>
                                 <tr>
-                                    <th scope="row"><h2>{book.name}</h2></th>
+                                    <th scope="row"><h5>{book.name}</h5></th>
                                     <td><img className='container-fluid w-50' src={book.img} alt="" /></td>
                                     <td><p>{book.description}</p></td>
                                     <td><p>{book.price}</p></td>
