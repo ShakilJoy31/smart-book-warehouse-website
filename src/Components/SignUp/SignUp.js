@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from './../firebase.init';
 import Loadding from './../Loadding';
-import Location from '../Home/Location';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -19,14 +20,17 @@ const SignUp = () => {
 
     const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
 
-    const handleOnSubmit = event => {
+    const [sendEmailVerification, sending, sendingEmailVerificatonError] = useSendEmailVerification(auth);
+
+    const handleOnSubmit = async event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
         if (password === confirmPassword) {
             createUserWithEmailAndPassword(email, password);
-            console.log(user);
+            await sendEmailVerification(); 
+            toast('Email verification is sent to your email'); 
         }
         else {
 
@@ -106,10 +110,12 @@ const SignUp = () => {
                             githubError && <p className='text-danger d-flex justify-content-center'>{githubError?.message}</p>
                         }
                     </div>
+
+                    
                     </div>
 
                     <button className="btn btn-outline-primary w-50
-        d-block mx-auto" type="submit">Log me in</button>
+        d-block mx-auto" type="submit">Sign up</button>
 
                     <div className='d-flex justify-content-center align-items-center'>
                         <div className='line w-50'></div>
@@ -125,6 +131,7 @@ const SignUp = () => {
                 <button onClick={handleSignInWithGithub} className="btn btn-outline-primary w-50
             d-block mx-auto mb-3" type="submit">Sign in with Github</button>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

@@ -1,11 +1,14 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSignInWithGithub, useAuthState } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSignInWithGithub, useAuthState, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import './Login.css';
 import Loadding from './../Loadding';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+    const [email, setEmail] = useState(''); 
     const [loggedInUser, loggedInLoading] = useAuthState(auth);
 
     const [
@@ -19,6 +22,10 @@ const Login = () => {
 
     const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
 
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+        auth
+      );
+
     const location = useLocation(); 
     const navigate = useNavigate(); 
     const from = location?.state?.from?.pathname || '/'; 
@@ -26,6 +33,7 @@ const Login = () => {
     const handleOnSubmit = event => {
         event.preventDefault();
         const email = event.target.email.value;
+        setEmail(email); 
         const password = event.target.password.value;
         signInWithEmailAndPassword(email, password);
     }
@@ -45,7 +53,7 @@ const Login = () => {
         return <Loadding></Loadding>
     }
     
-
+    console.log(email); 
 
     return (
         <div className='mt-4 row'>
@@ -54,7 +62,7 @@ const Login = () => {
                 <form onSubmit={handleOnSubmit}>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" name='email' id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                        <input onBlur={(event)=>{setEmail(event.target.value)}} type="email" class="form-control" name='email' id="exampleInputEmail1" aria-describedby="emailHelp" required />
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
@@ -69,6 +77,14 @@ const Login = () => {
                     <div className='d-flex justify-content-center'>
                         <p className='me-2'>New to Smart book Warehouse? </p>
                         <Link to='/signup'>Sign Up</Link>
+                    </div>
+
+                    <div className='d-flex justify-content-center'>
+                        <p className='me-2'>Forget password? </p>
+                        <Link onClick={async () => {
+          await sendPasswordResetEmail(email);
+          toast('password reset email is sent');
+        }} to='/login'>Click here</Link>
                     </div>
 
                     <div>
@@ -127,6 +143,7 @@ const Login = () => {
                     <button onClick={handleSignInWithGithub} className="btn btn-outline-primary w-50
             d-block mx-auto mb-3" type="submit">Sign in with Github</button>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

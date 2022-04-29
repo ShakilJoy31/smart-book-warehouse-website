@@ -107,8 +107,6 @@ const Blog = () => {
                 </table>
             </div>
 
-
-
             <div className='mt-5 ms-5 me-5'>
             <h1 className='text-primary'>The purpose of using JWT and how does it works </h1>
             <table class="table table-success table-striped">
