@@ -10,6 +10,8 @@ import SignUp from './Components/SignUp/SignUp';
 import AllInventory from './Components/AllInventory/AllInventory';
 import RequireAuth from './Components/RequireAuth';
 import ManageInventory from './Components/ManageInventory/ManageInventory';
+import AddNewItem from './Components/AddNewItem/AddNewItem';
+import MyItems from './Components/MyItems/MyItems';
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
 
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+
+        <Route path='/myitems' element={<MyItems></MyItems>}></Route>
+
+        <Route path='/addnewitem' element={<AddNewItem></AddNewItem>}></Route>
 
         <Route path='/manageinvetory' element={<ManageInventory></ManageInventory>}></Route>
 
