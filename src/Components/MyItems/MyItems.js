@@ -8,7 +8,12 @@ const MyItems = () => {
     const [myBooks, setMyBooks] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/addBook')
+        fetch('http://localhost:5000/addBook', {
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+                email: user?.email 
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 const myAddedBook = data.filter(book => book.email === user.email);

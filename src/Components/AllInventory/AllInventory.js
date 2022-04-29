@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate, useParams } from 'react-router-dom';
+import auth from '../firebase.init';
 
 const AllInventory = () => {
     const { id } = useParams();
     const [book, setBook] = useState([]);
+    const [user] = useAuthState(auth); 
     
     
     useEffect(() => {
-        fetch(`http://localhost:5000/particularBook/${id}`)
+        fetch(`http://localhost:5000/particularBook/${id}`, {
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+                email: user?.email 
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setBook(data)

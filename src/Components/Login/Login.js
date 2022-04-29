@@ -6,6 +6,7 @@ import './Login.css';
 import Loadding from './../Loadding';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState(''); 
@@ -30,12 +31,15 @@ const Login = () => {
     const navigate = useNavigate(); 
     const from = location?.state?.from?.pathname || '/'; 
 
-    const handleOnSubmit = event => {
+    const handleOnSubmit =async event => {
         event.preventDefault();
         const email = event.target.email.value;
         setEmail(email); 
         const password = event.target.password.value;
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        const {data} = await axios.post('http://localhost:5000/loginToken', {email}); 
+        console.log(data); 
+        localStorage.setItem('accessToken', data.accessToken); 
     }
 
     const handleSignInWithGoogle = () =>{
