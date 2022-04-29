@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Inventory from './Inventory';
+import Location from './Location';
+import Reader from './Reader';
 
 const Home = () => {
     const [books, setBooks] = useState([]);
@@ -9,7 +11,8 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setBooks(data))
     }, [])
-    console.log(books); 
+    const slicedBook = books.slice(0,6); 
+    console.log(slicedBook); 
     return (
         <div>
             <div className='container'>
@@ -52,11 +55,14 @@ const Home = () => {
                 </Carousel>
             </div>
 
-            <div>
+            <div className='row d-flex justify-content-center mx-auto g-3 container mt-5'>
+                <h1 className='d-flex justify-content-center text-primary'>Inventory Section</h1>
                 {
-                    books.map(book => <Inventory book={book} key={book._id}></Inventory>)
+                    slicedBook.map(book => <Inventory book={book} key={book._id}></Inventory>)
                 }
             </div>
+            <Location></Location>
+            <Reader></Reader>
         </div>
     );
 };
