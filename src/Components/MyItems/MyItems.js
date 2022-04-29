@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
+import Loadding from '../Loadding';
 
 const MyItems = () => {
-    const [user] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [myBooks, setMyBooks] = useState([]);
+
     useEffect(() => {
         fetch('http://localhost:5000/addBook')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const myAddedBook = data.filter(book => book.email === user.email);
                 setMyBooks(myAddedBook);
             });
@@ -17,9 +18,25 @@ const MyItems = () => {
     
 
     const handleDeleteButton = id => {
-        console.log(id); 
+        const confirm = window.confirm('Are you sure you want to delete this? ')
+        if(confirm){
+            fetch(`http://localhost:5000/deleteSpecificBook/${id}`, {
+            method: 'DELETE', 
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data); 
+            const afterDelete = myBooks.filter(book => book._id !== id); 
+            setMyBooks(afterDelete); 
+        })
+        }
+    }
+    if(loading){
+        return <Loadding></Loadding>
     }
 
+
+    
     return (
         <div className='mt-5'>
             <h1 className='d-flex justify-content-center text-primary'>The books you have added is being showed here</h1>

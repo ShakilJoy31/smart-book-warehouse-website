@@ -4,14 +4,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 const AllInventory = () => {
     const { id } = useParams();
     const [book, setBook] = useState([]);
-    const [bookQuantity, setBookQuantity] = useState(100); 
+    
     
     useEffect(() => {
         fetch(`http://localhost:5000/particularBook/${id}`)
             .then(res => res.json())
-            .then(data => setBook(data));
-    }, []);
+            .then(data => {
+                setBook(data)
+                console.log(data); 
+            });
+            
+    }, [book?.quantity]);
 
+    const [bookQuantity, setBookQuantity] = useState(100); 
     
 
     let quantity = parseInt(bookQuantity);

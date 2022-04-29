@@ -17,6 +17,8 @@ const Header = () => {
                     <form className="d-flex"> 
                     {/* <Link className='' to='/manageinvetory'><button className="btn btn-outline-success" type="submit">Manage Inventories</button></Link> */}
 
+                    <Link className='ms-3' to='/blog'><button className="btn btn-outline-success" type="submit">Blogs</button></Link>
+
                     {
                         user && <Link className='ms-3' to='/manageinvetory'><button className="btn btn-outline-success" type="submit">Manage Items</button></Link>
                     }
