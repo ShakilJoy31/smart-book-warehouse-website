@@ -18,6 +18,7 @@ const Header = () => {
                     {
                         user ? <Link onClick={handleLogOut} to='/'><button className="btn btn-outline-success" type="submit">Log out</button></Link> : <Link to='/login'><button className="btn btn-outline-success" type="submit">Login</button></Link>
                     }
+                    <Link className='ms-3' to='/manageinvetory'><button className="btn btn-outline-success" type="submit">Manage Inventories</button></Link>
                     </form>
                 </div>
             </nav>

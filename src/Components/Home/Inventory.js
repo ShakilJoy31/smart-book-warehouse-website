@@ -10,6 +10,7 @@ const Inventory = (props) => {
         navigate(`/inventory/${id}`); 
     }
 
+    
     return (
         <div className='col-md-6 col-lg-4 col-12'>
             <div className='border border-primary rounded'>
@@ -28,6 +29,7 @@ const Inventory = (props) => {
             </div>
             </div>
             </div>
+
         </div>
     );
 };

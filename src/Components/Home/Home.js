@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Inventory from './Inventory';
 import Location from './Location';
 import Reader from './Reader';
@@ -13,6 +14,11 @@ const Home = () => {
     }, [])
     const slicedBook = books.slice(0,6); 
     console.log(slicedBook); 
+
+    const navigate = useNavigate(); 
+    const handleManageInventoryButton = () =>{
+        navigate('/manageinvetory'); 
+    }
     return (
         <div>
             <div className='container'>
@@ -61,6 +67,8 @@ const Home = () => {
                     slicedBook.map(book => <Inventory book={book} key={book._id}></Inventory>)
                 }
             </div>
+            <button onClick={handleManageInventoryButton} className="btn btn-outline-success w-75
+            d-block mx-auto mt-4" type="submit">Manage Inventories</button>
             <Location></Location>
             <Reader></Reader>
         </div>
