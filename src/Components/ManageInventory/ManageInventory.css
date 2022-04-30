@@ -1,0 +1,50 @@
+@media 
+only screen and (max-width: 560px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	Force table to not be like tables anymore
+	table, thead, tbody, th, td, tr{ 
+		display: block; 
+	}
+	
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc;
+        margin-bottom: 17px;
+        margin-top: 12px;
+        border-radius: 10px;
+    }
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+
+
+    .hide-initially{
+        display: none;
+    }
+    
+} 
+
+.hide-initially{
+        display: block;
+        color:darkorange; 
+    }    
+

@@ -3,6 +3,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import './AddNewItem.css'; 
 import './AddNewItem.css'; 
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const AddNewItem = () => {
     const [user] = useAuthState(auth); 
@@ -31,7 +34,7 @@ const AddNewItem = () => {
             console.log(data); 
         })
         
-        
+        toast('A new book collection is added to the database.'); 
 
     }
     return (
@@ -63,6 +66,7 @@ const AddNewItem = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

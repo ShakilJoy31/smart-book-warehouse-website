@@ -68,18 +68,18 @@ const MyItems = () => {
                         {
                             myBooks.map(book =>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row"><h2>{book.name}</h2></th>
-                                        <td><img className='container-fluid w-50' src={book.img} alt="" /></td>
-                                        <td><p>{book.description}</p></td>
-                                        <td><p>{book.price}</p></td>
-                                        <td><p>{book.quantity}</p></td>
-                                        <td><p>{book.supplier}</p></td>
-                                        <td><p>{book.sold}</p></td>
-                                        <button onClick={() => handleDeleteButton(book._id)} className="btn btn-outline-success
+                                <tr>
+                                    <th scope="row"><h6>{book.name}</h6></th>
+                                    <td><span className='hide-initially'></span><img className='w-50' src={book.img} alt="" /></td>
+                                    <td><p><span className='hide-initially'>Description: </span>{book.description}</p></td>
+                                    <td><p><span className='hide-initially'>Price: </span>{book.price}</p></td>
+                                    <td><p><span className='hide-initially'>Quantity: </span>{book.quantity}</p></td>
+                                    <td><p><span className='hide-initially'>Supplier: </span>{book.supplierName}</p></td>
+                                    <td><p><span className='hide-initially'>Sold: </span>{book.sold}</p></td>
+                                    <button onClick={() => handleDeleteButton(book._id)} className="btn btn-outline-success
             d-block mx-auto mt-4" type="submit">Delete</button>
-                                    </tr>
-                                </tbody>)
+                                </tr>
+                            </tbody>)
                         }
                     </table>
                 </div>
