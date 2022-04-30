@@ -1,8 +1,8 @@
-# Website name: 
---> smart book warehouse
+# Website name: smart book warehouse
 
 
-Short Description: This is a smart book ware house website wher the calculation I mean how much book is being added for delevered to. People can add book at using their own gmail. And It varies from gmail to gmail. I mean the adding process will be shown according to their gmail. 
+# Short Description: 
+This is a smart book ware house website wher the calculation I mean how much book is being added for delevered to. People can add book at using their own gmail. And It varies from gmail to gmail. I mean the adding process will be shown according to their gmail. 
 Here is authentication system. and to store data, database is used. and so on.... 
 
 
