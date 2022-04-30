@@ -19,10 +19,10 @@ const Inventory = (props) => {
             <div className='w-100'>
             <div className='ms-3 me-3'>
             <h1>{name}</h1>
-            <p>{description}</p>
-            <p>{quantity}</p>
-            <p>{supplierName}</p>
-            <h3>$ <span>{price}</span></h3>
+            <p> <span className='aboutBook'>Description: </span>{description}</p>
+            <p> <span className='aboutBook'>Quantity: </span>{quantity}</p>
+            <p> <span className='aboutBook'>Supplier: </span>{supplierName}</p>
+            <h3> <span className='aboutBook'>Price: </span>$<span>{price}</span></h3>
             </div>
             <button onClick={()=>handleInventoryButton(_id)} className="btn btn-outline-success w-100
             d-block" type="submit">Update</button>

@@ -1,3 +1,12 @@
-.forheight{
-    height: 85vh;
+@media only screen and (max-width: 570px) {
+    .forheight{
+        height: auto;
+    }
 }
+
+@media only screen and (min-width: 571px) {
+    .forheight{
+        height: 85vh;
+    }
+}
+

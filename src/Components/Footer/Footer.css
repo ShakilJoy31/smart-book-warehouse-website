@@ -3,3 +3,9 @@
     height: 90px;
     color: blue;
 }
+
+.makeMargin{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}

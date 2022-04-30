@@ -7,7 +7,10 @@ import auth from '../firebase.init';
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const handleLogOut = () =>{
-        signOut(auth); 
+        const confirm = window.confirm('Are you sure you want to log out?')
+        if(confirm){
+        signOut(auth);
+    } 
     }
     return (
         <div className='container'>
