@@ -10,7 +10,7 @@ const AllInventory = () => {
     
     
     useEffect(() => {
-        fetch(`http://localhost:5000/particularBook/${id}`, {
+        fetch(`https://protected-inlet-99734.herokuapp.com/particularBook/${id}`, {
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
                 email: user?.email 
@@ -32,7 +32,7 @@ const AllInventory = () => {
         quantity = parseInt(quantity - 1);
         const newQuantity = { quantity };
         console.log(quantity);
-        fetch(`http://localhost:5000/updateQuantity/${id}`, {
+        fetch(`https://protected-inlet-99734.herokuapp.com/updateQuantity/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const AllInventory = () => {
         console.log(totalQuantity); 
         const stockedQuantity = { totalQuantity }; 
 
-        fetch(`http://localhost:5000/stockedQuantity/${id}`, {
+        fetch(`https://protected-inlet-99734.herokuapp.com/stockedQuantity/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
