@@ -30,7 +30,9 @@ const SignUp = () => {
         if (password === confirmPassword) {
             createUserWithEmailAndPassword(email, password);
             await sendEmailVerification(); 
-            toast('Email verification is sent to your email'); 
+            toast('Click twice on the sign up button to get email verification.'); 
+
+            toast('You will get an error. But dont worry for that.'); 
         }
         else {
 

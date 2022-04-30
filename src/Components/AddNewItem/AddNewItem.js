@@ -17,10 +17,10 @@ const AddNewItem = () => {
         const description = event.target.description.value; 
         const price = event.target.price.value; 
         const quantity = event.target.quantity.value; 
-        const supplier = event.target.supplier.value; 
+        const supplierName = event.target.supplier.value; 
         const sold = Math.round(Math.random() * 100);
         const email = user.email; 
-        const bookData = { name, img, description, price, quantity, supplier, sold, email}; 
+        const bookData = { name, img, description, price, quantity, supplierName, sold, email}; 
 
         fetch('http://localhost:5000/addBook', {
             method: 'POST', 
@@ -36,6 +36,12 @@ const AddNewItem = () => {
         
         toast('A new book collection is added to the database.'); 
 
+        event.target.name.value = ''; 
+        event.target.img.value = '';
+        event.target.description.value = '';
+        event.target.price.value = '';
+        event.target.quantity.value = '';
+        event.target.supplier.value = '';
     }
     return (
         <div className='forHeight'>

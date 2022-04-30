@@ -3,6 +3,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import Loadding from '../Loadding';
 import './MyItems.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const MyItems = () => {
     const [user, loading] = useAuthState(auth);
@@ -35,6 +39,7 @@ const MyItems = () => {
             const afterDelete = myBooks.filter(book => book._id !== id); 
             setMyBooks(afterDelete); 
         })
+        toast('Item is deleted successfully.'); 
         }
     }
     if(loading){
@@ -84,6 +89,7 @@ const MyItems = () => {
                     </table>
                 </div>
             }
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

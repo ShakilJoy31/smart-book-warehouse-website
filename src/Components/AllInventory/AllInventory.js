@@ -74,6 +74,7 @@ const AllInventory = () => {
         navigate('/manageinvetory'); 
     }
 
+
     return (
         <div className='mt-4'>
             <div className='d-block mx-auto w-75'>
@@ -97,13 +98,14 @@ const AllInventory = () => {
                             <div className='w-100'>
                                 <div className='ms-3 me-3'>
                                     <h1>{book.name}</h1>
-                                    <p>{book.description}</p>
+                                    <p><span className='aboutBook'>Book Id: </span>{book._id}</p>
+                                    <p><span className='aboutBook'>Description: </span>{book.description}</p>
+                                   
+                                    <p><span className='aboutBook'>Quantity: </span>{bookQuantity}</p>
                                     
-                                        <p>{bookQuantity}</p>
-                                    
-                                    <p>{book.supplierName}</p>
-                                    <h3>$ <span>{book.price}</span></h3>
-                                    <h3>Sold: <span>{book.sold}</span></h3>
+                                    <p><span className='aboutBook'>Supplier: </span>{book.supplierName}</p>
+                                    <h3><span className='aboutBook'>Price: </span>${book.price}</h3>
+                                    <p><span className='aboutBook'>Sold: </span> {book.sold}</p>
                                 </div>
                                 <button onClick={() => handleDeleveredButton(book._id)} className="btn btn-outline-success w-100
             d-block" type="submit">Delivered</button>

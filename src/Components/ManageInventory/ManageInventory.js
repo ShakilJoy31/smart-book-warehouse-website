@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ManageInventory.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 
 const ManageInventory = () => {
     const [books, setBooks] = useState([]);
@@ -11,7 +14,9 @@ const ManageInventory = () => {
     }, [])
 
     const handleDeleteButton = id => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        const confirm = window.confirm('Are you want to delete this item? '); 
+        if(confirm){
+            fetch(`http://localhost:5000/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -21,6 +26,8 @@ const ManageInventory = () => {
 
         const remaiiningBooks = books.filter(book => book._id !== id);
         setBooks(remaiiningBooks);
+        toast('Item is deleted successfully'); 
+        }
 
     }
 
@@ -68,7 +75,8 @@ const ManageInventory = () => {
             }
 
             <button onClick={handleInsertInventoryButton} className="btn btn-outline-success
-            d-block mx-auto mt-4 w-75 fs-3" type="submit">Insert a New Book Collection to the Ware house</button>
+            d-block mx-auto mt-4 w-75 fs-3" type="submit">Add New Item</button>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

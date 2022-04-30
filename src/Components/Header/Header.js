@@ -18,7 +18,7 @@ const Header = () => {
                 <div className="container-fluid">
                     <Link to='/' className="navbar-brand">Home</Link>
                     <form className="d-flex"> 
-                    
+                     
 
                     <Link className='me-3 ' to='/blog'><button className="btn btn-outline-success" type="submit">Blogs</button></Link>
 
