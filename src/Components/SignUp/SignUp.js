@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from './../firebase.init';
 import Loadding from './../Loadding';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 
 
@@ -15,6 +16,7 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
@@ -32,20 +34,54 @@ const SignUp = () => {
             await sendEmailVerification(); 
             toast('Click twice on the sign up button to get email verification.'); 
 
-            toast('You will get an error. But dont worry for that.'); 
         }
-        else {
 
-        }
+        const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+        console.log(data); 
+        localStorage.setItem('accessToken', data.accessToken); 
+
     }
 
     const handleSignInWithGoogle = () => {
         signInWithGoogle();
+        
     }
 
     const handleSignInWithGithub = () => {
         signInWithGithub(); 
     }
+
+
+        useEffect(()=>{
+           if(googleUser){
+               const verifyGmailWithJWT = async (email) =>{
+                const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+                console.log(googleUser?.user?.email); 
+                localStorage.setItem('accessToken', data?.accessToken);
+                console.log(data); 
+
+               }
+               verifyGmailWithJWT(googleUser?.user?.email)
+           }
+        },[googleUser])
+
+        console.log(githubUser?.user.providerData[0]?.email); 
+
+        useEffect(()=>{
+            if(githubUser){
+                const verifyGmailWithJWT = async (email) =>{
+                    
+                 const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+                 console.log(email); 
+                 localStorage.setItem('accessToken', data?.accessToken);
+                 console.log(data); 
+                 console.log('connected to github'); 
+ 
+                }
+                verifyGmailWithJWT(githubUser?.user?.providerData[0]?.email)
+            }
+         },[githubUser])
+
 
     return (
         <div className='mt-4 row forheight'>

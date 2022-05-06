@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const ManageInventory = () => {
     const [books, setBooks] = useState([]);
     useEffect(() => {
-        fetch('https://protected-inlet-99734.herokuapp.com/books')
+        fetch('http://localhost:5000/books')
             .then(res => res.json())
             .then(data => setBooks(data))
     }, [])
@@ -16,7 +16,7 @@ const ManageInventory = () => {
     const handleDeleteButton = id => {
         const confirm = window.confirm('Are you want to delete this item? '); 
         if(confirm){
-            fetch(`https://protected-inlet-99734.herokuapp.com/delete/${id}`, {
+            fetch(`http://localhost:5000/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

@@ -9,7 +9,7 @@ const Reader = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 container-fluid"
-                        src="https://jooinn.com/images/portrait-124.jpg"
+                        src="https://media.istockphoto.com/photos/alluring-woman-dressed-in-a-posh-jewelry-set-of-necklace-ring-and-picture-id1179439658?k=20&m=1179439658&s=612x612&w=0&h=zAvzx7hBJ03STsQBPm27812iH5h4v0mVrEVwNwQ0XmM="
                         alt="First slide"
                     />
                     <Carousel.Caption>

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../firebase.init';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AllInventory = () => {
     const { id } = useParams();
     const [book, setBook] = useState([]);
     const [user] = useAuthState(auth); 
+    const [bookQuantity, setBookQuantity] = useState(); 
     
     
     useEffect(() => {
-        fetch(`https://protected-inlet-99734.herokuapp.com/particularBook/${id}`, {
+        fetch(`http://localhost:5000/particularBook/${id}`, {
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
                 email: user?.email 
@@ -19,12 +22,16 @@ const AllInventory = () => {
             .then(res => res.json())
             .then(data => {
                 setBook(data)
-                console.log(data); 
             });
             
-    }, [book?.quantity]);
+            
+    }, []);
 
-    const [bookQuantity, setBookQuantity] = useState(100); 
+    useEffect(()=>{
+        setBookQuantity(book?.quantity); 
+    },[book?.quantity])
+
+    
     
 
     let quantity = parseInt(bookQuantity);
@@ -32,7 +39,7 @@ const AllInventory = () => {
         quantity = parseInt(quantity - 1);
         const newQuantity = { quantity };
         console.log(quantity);
-        fetch(`https://protected-inlet-99734.herokuapp.com/updateQuantity/${id}`, {
+        fetch(`http://localhost:5000/updateQuantity/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -50,11 +57,14 @@ const AllInventory = () => {
     const handleRestock = event =>{
         event.preventDefault(); 
         const quantityInStock = parseInt(event.target.quantity.value); 
-        const totalQuantity = quantity + quantityInStock; 
-        console.log(totalQuantity); 
+        if(quantityInStock < 1){
+            toast('Quantity can not be a negative number or 0'); 
+            return; 
+        }
+        const totalQuantity = quantity + quantityInStock;  
         const stockedQuantity = { totalQuantity }; 
 
-        fetch(`https://protected-inlet-99734.herokuapp.com/stockedQuantity/${id}`, {
+        fetch(`http://localhost:5000/stockedQuantity/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -101,7 +111,7 @@ const AllInventory = () => {
                                     <p><span className='aboutBook'>Book Id: </span>{book._id}</p>
                                     <p><span className='aboutBook'>Description: </span>{book.description}</p>
                                    
-                                    <p><span className='aboutBook'>Quantity: </span>{bookQuantity}</p>
+                                    <p><span className='aboutBook d-flex'>Quantity:{bookQuantity < 1 ? <p className='text-danger ms-2'>stocked out</p>: <p className='ms-2 text-black'>{bookQuantity}</p>}</span></p>
                                     
                                     <p><span className='aboutBook'>Supplier: </span>{book.supplierName}</p>
                                     <h3><span className='aboutBook'>Price: </span>${book.price}</h3>
@@ -116,6 +126,7 @@ const AllInventory = () => {
             </div>
             <button onClick={handleManageInventoryButton} className="btn btn-outline-success w-75
             d-block mx-auto mt-4" type="submit">Manage Inventories</button>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSignInWithGithub, useAuthState, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
@@ -37,7 +37,7 @@ const Login = () => {
         setEmail(email); 
         const password = event.target.password.value;
         await signInWithEmailAndPassword(email, password);
-        const {data} = await axios.post('https://protected-inlet-99734.herokuapp.com/loginToken', {email}); 
+        const {data} = await axios.post('http://localhost:5000/loginToken', {email}); 
         console.log(data); 
         localStorage.setItem('accessToken', data.accessToken); 
     }
@@ -50,6 +50,35 @@ const Login = () => {
         signInWithGithub();
     }
 
+    useEffect(()=>{
+        if(googleUser){
+            const verifyGmailWithJWT = async (email) =>{
+             const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+             console.log(googleUser?.user?.email); 
+             localStorage.setItem('accessToken', data?.accessToken);
+             console.log(data); 
+
+            }
+            verifyGmailWithJWT(googleUser?.user?.email)
+        }
+     },[googleUser])
+     
+
+     useEffect(()=>{
+         if(githubUser){
+             const verifyGmailWithJWT = async (email) =>{
+                 
+              const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+              console.log(email); 
+              localStorage.setItem('accessToken', data?.accessToken);
+              console.log(data); 
+              console.log('connected to github'); 
+
+             }
+             verifyGmailWithJWT(githubUser?.user?.providerData[0]?.email)
+         }
+      },[githubUser])
+
     if(loggedInUser){
         navigate(from, {replace: true}); 
     }
@@ -57,7 +86,6 @@ const Login = () => {
         return <Loadding></Loadding>
     }
     
-    console.log(email); 
 
     return (
         <div className='mt-4 row forheight'>

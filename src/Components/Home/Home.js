@@ -10,13 +10,12 @@ import './Home.css'
 const Home = () => {
     const [books, setBooks] = useState([]);
     useEffect(() => {
-        fetch('https://protected-inlet-99734.herokuapp.com/books')
+        fetch('http://localhost:5000/books')
             .then(res => res.json())
             .then(data => setBooks(data))
     }, [])
     const slicedBook = books.slice(0,6); 
-    console.log(slicedBook); 
-
+    
     const navigate = useNavigate(); 
     const handleManageInventoryButton = () =>{
         navigate('/manageinvetory'); 
@@ -73,6 +72,7 @@ const Home = () => {
             d-block mx-auto mt-4" type="submit">Manage Inventories</button>
             <Location></Location>
             <Reader></Reader>
+            
         </div>
     );
 };

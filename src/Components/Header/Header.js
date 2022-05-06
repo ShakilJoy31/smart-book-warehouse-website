@@ -10,6 +10,7 @@ const Header = () => {
         const confirm = window.confirm('Are you sure you want to log out?')
         if(confirm){
         signOut(auth);
+        localStorage.removeItem('accessToken'); 
     } 
     }
     return (

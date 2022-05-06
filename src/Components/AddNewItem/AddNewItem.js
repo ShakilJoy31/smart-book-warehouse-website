@@ -22,7 +22,7 @@ const AddNewItem = () => {
         const email = user.email; 
         const bookData = { name, img, description, price, quantity, supplierName, sold, email}; 
 
-        fetch('https://protected-inlet-99734.herokuapp.com/addBook', {
+        fetch('http://localhost:5000/addBook', {
             method: 'POST', 
             headers: {
                 'content-type':'application/json'
