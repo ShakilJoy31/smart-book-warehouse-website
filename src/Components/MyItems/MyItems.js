@@ -13,7 +13,7 @@ const MyItems = () => {
     const [myBooks, setMyBooks] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/addBook', {
+        fetch('https://protected-inlet-99734.herokuapp.com/addBook', {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                 email: user?.email
@@ -30,7 +30,7 @@ const MyItems = () => {
     const handleDeleteButton = id => {
         const confirm = window.confirm('Are you sure you want to delete this? ')
         if (confirm) {
-            fetch(`http://localhost:5000/deleteSpecificBook/${id}`, {
+            fetch(`https://protected-inlet-99734.herokuapp.com/deleteSpecificBook/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

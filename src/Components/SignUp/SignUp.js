@@ -36,7 +36,7 @@ const SignUp = () => {
 
         }
 
-        const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+        const {data} = await axios.post('https://protected-inlet-99734.herokuapp.com/signInToken', {email}); 
         console.log(data); 
         localStorage.setItem('accessToken', data.accessToken); 
 
@@ -55,7 +55,7 @@ const SignUp = () => {
         useEffect(()=>{
            if(googleUser){
                const verifyGmailWithJWT = async (email) =>{
-                const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+                const {data} = await axios.post('https://protected-inlet-99734.herokuapp.com/signInToken', {email}); 
                 console.log(googleUser?.user?.email); 
                 localStorage.setItem('accessToken', data?.accessToken);
                 console.log(data); 
@@ -71,7 +71,7 @@ const SignUp = () => {
             if(githubUser){
                 const verifyGmailWithJWT = async (email) =>{
                     
-                 const {data} = await axios.post('http://localhost:5000/signInToken', {email}); 
+                 const {data} = await axios.post('https://protected-inlet-99734.herokuapp.com/signInToken', {email}); 
                  console.log(email); 
                  localStorage.setItem('accessToken', data?.accessToken);
                  console.log(data); 
